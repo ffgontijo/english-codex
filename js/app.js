@@ -2,6 +2,54 @@ const STORAGE_KEY = 'english_codex_progress_v1';
 const COPY_MODE_KEY = 'english_codex_copy_mode_v1';
 const LEVELS = ['ALL', 'START', 'A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'CAMBRIDGE'];
 
+const LEVEL_GUIDES = {
+  START: {
+    title: 'Como usar este codex',
+    pt: 'Esta parte explica o método. Leia sem pressa, copie apenas o essencial e transforme cada página em produção real: frases suas, exemplos seus e revisão sua. O site mostra o caminho; o caderno obriga o cérebro a trabalhar, esse funcionário preguiçoso.',
+    en: 'Use this section to understand the method: read, handwrite, produce, correct and review.'
+  },
+  A0: {
+    title: 'A0 · O ponto de partida real',
+    pt: 'Aqui o português é uma ponte, não uma muleta. Você ainda está aprendendo sons, palavras, frases mínimas e sobrevivência. A meta não é “pensar em inglês” por mágica. A meta é reconhecer padrões, escrever frases simples e começar a falar sem travar completamente.',
+    en: 'At A0, Portuguese supports understanding while English becomes familiar through small patterns and repeated production.'
+  },
+  A1: {
+    title: 'A1 · A primeira base',
+    pt: 'Neste nível, você começa a dizer quem é, o que faz, onde vive, o que gosta e o que precisa. A explicação deve partir da sua vida real: trabalho, família, estudos, rotina, hobbies. Inglês não é peça de museu. É ferramenta.',
+    en: 'At A1, you build the first useful sentences about identity, routine, likes, needs and daily life.'
+  },
+  A2: {
+    title: 'A2 · Sobreviver melhor',
+    pt: 'Aqui você começa a falar de passado, planos, quantidade, comparação e situações do dia a dia. Ainda precisa de apoio em português quando a regra pesa, mas cada página deve terminar com frases em inglês criadas por você.',
+    en: 'At A2, you expand into past events, future plans, quantity, comparison and common daily situations.'
+  },
+  B1: {
+    title: 'B1 · Explicar o mundo ao seu redor',
+    pt: 'Neste ponto, você já consegue contar histórias, justificar opiniões e conectar ideias. A aula precisa provocar conversa: por que você pensa isso? Onde isso aparece na sua vida? Como você diria isso no trabalho?',
+    en: 'At B1, you learn to tell stories, explain opinions and connect ideas with more confidence.'
+  },
+  B2: {
+    title: 'B2 · Argumentar sem tropeçar tanto',
+    pt: 'Agora inglês vira ferramenta para discutir temas complexos, defender pontos de vista e escrever textos organizados. Cultura pop entra como exemplo: dilemas, escolhas, conflitos, tecnologia, sociedade e personagens ajudam a lembrar estruturas.',
+    en: 'At B2, you develop argumentation, structure, nuance and more independent communication.'
+  },
+  C1: {
+    title: 'C1 · Precisão, nuance e presença',
+    pt: 'Aqui a meta é controlar tom, formalidade, impacto e estilo. Você aprende a soar profissional, claro e sofisticado sem virar um robô corporativo que fala “synergy” para pedir café.',
+    en: 'At C1, you refine nuance, register, advanced grammar and professional or academic expression.'
+  },
+  C2: {
+    title: 'C2 · Domínio expressivo',
+    pt: 'No C2, a questão não é saber regra. É escolher efeito: ironia, precisão, implicação, ritmo, elegância e força argumentativa. A língua vira instrumento, não obstáculo.',
+    en: 'At C2, you focus on rhetorical control, implication, precision, style and expressive power.'
+  },
+  CAMBRIDGE: {
+    title: 'Cambridge Forge · Exame com método',
+    pt: 'Esta área conecta o estudo do codex aos exames Cambridge. A ideia não é decorar truque barato. É entender habilidade, critério, tarefa, tempo e estratégia.',
+    en: 'This section connects the Codex method to Cambridge exam skills, task types and strategy.'
+  }
+};
+
 const dom = {
   article: document.querySelector('#article'),
   nav: document.querySelector('#navigation'),
@@ -139,6 +187,60 @@ function pageById(id) {
   return state.pages.find(page => page.id === id) || state.pages[0];
 }
 
+function levelGuide(page) {
+  const guide = LEVEL_GUIDES[page.level] || LEVEL_GUIDES.START;
+  return `
+    <section class="level-bridge" aria-label="Brazilian learner guide">
+      <strong>${escapeHtml(guide.title)}</strong>
+      <p><b>Para brasileiros:</b> ${escapeHtml(guide.pt)}</p>
+      <p><b>In English:</b> ${escapeHtml(guide.en)}</p>
+    </section>
+  `;
+}
+
+function studyLoop() {
+  return `
+    <section class="study-loop" aria-label="Codex study rhythm">
+      <div class="study-step"><strong>1 · Ler</strong><span>Entenda a ideia primeiro. Nada de copiar no piloto automático, esse teatro de produtividade.</span></div>
+      <div class="study-step"><strong>2 · Escrever</strong><span>Copie à mão só o essencial: regra, exemplo, armadilha e frase sua.</span></div>
+      <div class="study-step"><strong>3 · Produzir</strong><span>Crie frases sobre sua vida, trabalho, estudos, jogos, filmes ou rotina.</span></div>
+      <div class="study-step"><strong>4 · Falar</strong><span>Leia em voz alta. Inglês que nunca sai da boca vira decoração no caderno.</span></div>
+      <div class="study-step"><strong>5 · Revisar</strong><span>Volte em 1, 7 e 30 dias. Memória sem revisão é Wi-Fi de rodoviária.</span></div>
+    </section>
+  `;
+}
+
+function fourSkillsPanel() {
+  return `
+    <section class="four-skills-panel" aria-label="Four language skills">
+      <div class="skill-card"><strong>Audição · Listening</strong><p>Ouça padrões reais: sons, ritmo, contrações, sotaques e frases naturais.</p></div>
+      <div class="skill-card"><strong>Fala · Speaking</strong><p>Transforme regra em voz: respostas curtas, exemplos próprios e repetição consciente.</p></div>
+      <div class="skill-card"><strong>Leitura · Reading</strong><p>Leia para reconhecer estrutura, contexto, intenção e vocabulário em uso.</p></div>
+      <div class="skill-card"><strong>Escrita · Writing</strong><p>Escreva para pensar melhor: frase, parágrafo, e-mail, opinião e revisão.</p></div>
+    </section>
+  `;
+}
+
+function teacherIntro(page) {
+  const starterLevels = ['A0', 'A1', 'A2'];
+  const isStarter = starterLevels.includes(page.level);
+  const ptSupport = isStarter
+    ? 'Nos níveis iniciais, a explicação usa português como ponte. A pessoa ainda está aprendendo a ler inglês, então jogar tudo em inglês logo de cara seria inclusivo do mesmo jeito que uma porta trancada é acolhedora.'
+    : 'Neste nível, o português aparece menos, mas ainda serve para comparar ideias, evitar armadilhas comuns e explicar nuance quando necessário.';
+
+  return `
+    <section class="block teacher-card">
+      <h3>Como estudar esta página</h3>
+      <p>${escapeHtml(ptSupport)}</p>
+      <p>Leia a explicação, conecte com uma situação real da sua vida, copie a parte essencial no caderno e crie pelo menos três exemplos seus. O objetivo é consciência + prática, não decoração mecânica.</p>
+    </section>
+    <section class="block brazil-card">
+      <h3>Ponte para brasileiros</h3>
+      <p>Compare inglês e português com cuidado. Algumas estruturas parecem iguais, mas funcionam de outro jeito. Quando uma regra parecer estranha, pergunte: “Que ideia essa estrutura me ajuda a expressar?” Esse é o ponto. Gramática é ferramenta de sentido, não punição medieval.</p>
+    </section>
+  `;
+}
+
 function renderArticle() {
   const page = pageById(state.current);
   if (!page) return;
@@ -166,14 +268,21 @@ function renderArticle() {
       <p class="summary">${escapeHtml(page.summary)}</p>
     </header>
 
+    ${levelGuide(page)}
+    ${studyLoop()}
+    ${fourSkillsPanel()}
+
     <div class="article-tools" aria-label="Page controls">
       <button class="btn btn-primary" type="button" data-action="toggle-done">${done ? 'Marked Done' : 'Mark This Page Done'}</button>
       ${previous ? `<button class="btn" type="button" data-action="previous">Previous</button>` : ''}
       ${next ? `<button class="btn" type="button" data-action="next">Next</button>` : ''}
-      <button class="btn" type="button" data-action="copy-mode">Toggle Copy Mode</button>
+      <button class="btn" type="button" data-action="copy-mode">Toggle Handwriting Mode</button>
     </div>
 
-    <div class="content">${page.html}</div>
+    <div class="content">
+      ${teacherIntro(page)}
+      ${page.html}
+    </div>
   `;
 
   dom.article.querySelector('[data-action="toggle-done"]')?.addEventListener('click', toggleDone);
@@ -189,7 +298,7 @@ function showPage(id) {
   renderNavigation();
   renderProgress();
   document.querySelector('#content').focus({ preventScroll: true });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  dom.article.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function toggleDone() {
