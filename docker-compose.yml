@@ -1,0 +1,7 @@
+services:
+  english-codex:
+    build: .
+    container_name: english-codex
+    restart: unless-stopped
+    ports:
+      - "8085:80"

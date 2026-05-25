@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The English Codex is a public A0 to C2 English study companion built around handwritten notes, active recall, grammar, skills and Cambridge exam preparation." />
+  <meta name="theme-color" content="#f7f1e7" />
+  <title>The English Codex</title>
+  <link rel="icon" href="assets/icons/codex-mark.svg" type="image/svg+xml" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <script type="module" src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <div class="app-shell">
+    <header class="topbar" aria-label="Site header">
+      <button class="btn btn-ghost mobile-only" id="menuButton" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+
+      <a class="brand" href="#home" aria-label="The English Codex home">
+        <img class="brand-mark" src="assets/icons/codex-mark.svg" alt="" aria-hidden="true" />
+        <span>
+          <strong>The English Codex</strong>
+          <small>A0 → C2 · Handwritten Study Companion · Cambridge Forge</small>
+        </span>
+      </a>
+
+      <div class="topbar-actions" aria-label="Reading controls">
+        <button class="btn" id="copyModeButton" type="button">Copy Mode</button>
+        <button class="btn" id="resetButton" type="button">Reset Progress</button>
+        <button class="btn btn-primary" id="doneButton" type="button">Mark Done</button>
+      </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Codex navigation">
+      <div class="sidebar-sticky">
+        <label class="search-label" for="searchInput">Search the Codex</label>
+        <input class="searchbox" id="searchInput" type="search" placeholder="Search grammar, skill, level..." autocomplete="off" />
+
+        <div class="filters" id="filters" aria-label="Level filters"></div>
+
+        <section class="progress-card" aria-label="Study progress">
+          <div class="progress-line" aria-hidden="true"><span class="progress-fill" id="progressFill"></span></div>
+          <p class="progress-text" id="progressText">Loading progress...</p>
+        </section>
+      </div>
+
+      <nav class="nav-list" id="navigation"></nav>
+    </aside>
+
+    <main class="main" id="content" tabindex="-1">
+      <article class="article" id="article" aria-live="polite"></article>
+      <footer class="site-footer">
+        <p>Built as a public, handwritten-codex-first English companion. Always check official Cambridge pages before booking exams. The internet lies with confidence. Charming, really.</p>
+      </footer>
+    </main>
+  </div>
+
+  <template id="loadErrorTemplate">
+    <section class="block warning-card">
+      <h3>Could not load the Codex data</h3>
+      <p>This project must be served through a local or remote web server so the browser can load <code>data/pages.json</code>.</p>
+      <p>Run <code>python -m http.server 8080</code> in the project folder and open <code>http://localhost:8080</code>.</p>
+    </section>
+  </template>
+</body>
+</html>

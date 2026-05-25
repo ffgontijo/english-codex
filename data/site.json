@@ -1,0 +1,20 @@
+{
+  "name": "The English Codex",
+  "tagline": "A handwritten study companion from A0 to C2",
+  "repository": "https://github.com/ffgontijo/english-codex",
+  "language": "en",
+  "scope": [
+    "A0 to C2",
+    "Grammar",
+    "Listening",
+    "Speaking",
+    "Reading",
+    "Writing",
+    "Vocabulary",
+    "Pronunciation",
+    "Cambridge B2 First",
+    "Cambridge C1 Advanced",
+    "Cambridge C2 Proficiency"
+  ],
+  "principle": "The screen teaches. The notebook remembers. Practice turns knowledge into skill."
+}
