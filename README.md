@@ -2,6 +2,29 @@
 
 > A structured English-learning codex for Brazilian learners, from A0 to C2, built around active study, handwritten notes, CEFR progression, Cambridge preparation and real-life examples.
 
+[![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
+[![CEFR](https://img.shields.io/badge/CEFR-A0%20to%20C2-4CAF50?style=flat-square)](https://www.coe.int/en/web/common-european-framework-reference-languages)
+[![Cambridge](https://img.shields.io/badge/Cambridge-exam%20prep-003087?style=flat-square)](https://www.cambridgeenglish.org/)
+
+---
+
+## Table of contents
+
+- [Overview](#overview)
+- [Main goals](#main-goals)
+- [Target audience](#target-audience)
+- [Architecture](#architecture)
+- [Project structure](#project-structure)
+- [Pages](#pages)
+- [Cambridge path](#cambridge-path)
+- [Development](#development)
+- [Documentation](#documentation)
+- [Quality checklist](#quality-checklist)
+- [License and usage](#license-and-usage)
+
+---
+
 ## Overview
 
 **English Codex** is an educational website designed to help Brazilian learners study English with structure, clarity and long-term consistency.
@@ -10,11 +33,13 @@ The project is not just a collection of grammar pages. The purpose is to guide l
 
 The core idea is simple:
 
-```text
+```
 Read → Understand → Write → Practice → Correct → Review → Use
 ```
 
 Because apparently "watching three videos and hoping fluency materializes" is not a learning method. Tragic, I know.
+
+---
 
 ## Main goals
 
@@ -29,6 +54,8 @@ English Codex helps learners:
 - connect English with real life, work, culture, movies, series, books, RPG, games and music;
 - use active recall, spaced review and error correction instead of passive reading.
 
+---
+
 ## Target audience
 
 This project is designed for:
@@ -40,13 +67,15 @@ This project is designed for:
 - learners who enjoy pop culture and nerdy examples;
 - people who want to build a handwritten or digital English notebook.
 
-## Current architecture
+---
+
+## Architecture
 
 The website uses **PHP** to keep the layout maintainable.
 
 Shared components such as the header, navigation, level bar and footer are handled through reusable partials.
 
-Typical page structure:
+**Typical page structure:**
 
 ```php
 <?php
@@ -65,7 +94,7 @@ require __DIR__ . '/partials/page-start.php';
 <?php require __DIR__ . '/partials/page-end.php'; ?>
 ```
 
-Level pages inside `/levels` use paths one directory up:
+**Level pages** inside `/levels` use paths one directory up:
 
 ```php
 <?php
@@ -84,7 +113,9 @@ require __DIR__ . '/../partials/page-start.php';
 <?php require __DIR__ . '/../partials/page-end.php'; ?>
 ```
 
-## Recommended project structure
+---
+
+## Project structure
 
 ```text
 english-codex/
@@ -135,14 +166,16 @@ english-codex/
 └── SECURITY.md
 ```
 
-If your repository uses the project root as the web root instead of `/html`, adjust the paths accordingly. The documentation assumes the current self-hosted model where web files live under `html/`.
+> If your repository uses the project root as the web root instead of `/html`, adjust the paths accordingly. The documentation assumes the current self-hosted model where web files live under `html/`.
+
+---
 
 ## Pages
 
 ### Main pages
 
 | Page | Purpose |
-| --- | --- |
+|---|---|
 | `index.php` | Project introduction and main entry point |
 | `start.php` | How to start using the Codex |
 | `notebook.php` | How to build the personal English notebook |
@@ -156,7 +189,7 @@ If your repository uses the project root as the web root instead of `/html`, adj
 ### Level pages
 
 | Level | Page | Main focus |
-| --- | --- | --- |
+|---|---|---|
 | A0 | `levels/a0.php` | Absolute beginner foundation |
 | A1 | `levels/a1.php` | First real sentences |
 | A2 | `levels/a2.php` | Basic independence |
@@ -165,19 +198,23 @@ If your repository uses the project root as the web root instead of `/html`, adj
 | C1 | `levels/c1.php` | Nuance, register and Cambridge C1 Advanced |
 | C2 | `levels/c2.php` | Mastery, style, Cambridge C2 Proficiency and post-C2 maintenance |
 
+---
+
 ## Cambridge path
 
 The project includes Cambridge-oriented sections from A2 upward:
 
 | Level | Cambridge exam |
-| --- | --- |
+|---|---|
 | A2 | A2 Key |
 | B1 | B1 Preliminary |
 | B2 | B2 First |
 | C1 | C1 Advanced |
 | C2 | C2 Proficiency |
 
-The project does not replace official Cambridge documentation. Always check official Cambridge sources for current exam format, policies, prices and dates.
+> The project does not replace official Cambridge documentation. Always check official Cambridge sources for current exam format, policies, prices and dates.
+
+---
 
 ## Development
 
@@ -190,11 +227,7 @@ cd html
 php -S localhost:8080
 ```
 
-Open:
-
-```text
-http://localhost:8080
-```
+Open `http://localhost:8080` in your browser.
 
 ### Check PHP syntax
 
@@ -206,25 +239,18 @@ find html -name "*.php" -print0 | xargs -0 -n1 php -l
 
 ### Docker deployment
 
-If using Docker:
-
 ```bash
+# Start
 docker compose up -d
-```
 
-Check logs:
-
-```bash
+# Check logs
 docker compose logs -f
-```
 
-Restart:
-
-```bash
+# Restart
 docker compose restart
 ```
 
-## Git workflow
+### Git workflow
 
 ```bash
 git status
@@ -233,17 +259,25 @@ git commit -m "docs: improve project documentation"
 git push origin main
 ```
 
+---
+
 ## Documentation
 
 Technical documentation is available in the `docs/` folder:
 
-- [Project Overview](docs/PROJECT_OVERVIEW.md)
-- [Technical Architecture](docs/TECHNICAL_ARCHITECTURE.md)
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [Content Guide](docs/CONTENT_GUIDE.md)
-- [Cambridge and References](docs/CAMBRIDGE_AND_REFERENCES.md)
-- [Maintenance Guide](docs/MAINTENANCE.md)
-- [Roadmap](docs/ROADMAP.md)
+| File | Contents |
+|---|---|
+| [Project Overview](docs/PROJECT_OVERVIEW.md) | Goals, scope, and project philosophy |
+| [Technical Architecture](docs/TECHNICAL_ARCHITECTURE.md) | Stack, structure, and design decisions |
+| [Deployment Guide](docs/DEPLOYMENT.md) | How to deploy with Docker or a self-hosted server |
+| [Content Guide](docs/CONTENT_GUIDE.md) | How to write and format content pages |
+| [Cambridge and References](docs/CAMBRIDGE_AND_REFERENCES.md) | Cambridge exam notes and external references |
+| [Maintenance Guide](docs/MAINTENANCE.md) | Routine checks and update process |
+| [Roadmap](docs/ROADMAP.md) | Planned improvements and future content |
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution process and guidelines.
+
+---
 
 ## Quality checklist
 
@@ -260,6 +294,8 @@ Before publishing changes:
 - [ ] Cambridge links point to official sources;
 - [ ] no copyrighted lyrics, scripts or long protected excerpts are included;
 - [ ] content remains clear for Brazilian learners.
+
+---
 
 ## License and usage
 
