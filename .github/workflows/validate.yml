@@ -1,0 +1,77 @@
+name: Validate English Codex
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  php-syntax:
+    name: PHP syntax check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Check PHP syntax
+        shell: bash
+        run: |
+          if [ -d "html" ]; then
+            find html -name "*.php" -print0 | xargs -0 -n1 php -l
+          else
+            find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
+          fi
+
+  basic-repository-checks:
+    name: Basic repository checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify important files
+        shell: bash
+        run: |
+          test -f README.md
+          test -f .gitignore
+          test -f docs/PROJECT_OVERVIEW.md
+          test -f docs/TECHNICAL_ARCHITECTURE.md
+          test -f docs/DEPLOYMENT.md
+          test -f docs/CONTENT_GUIDE.md
+          test -f docs/MAINTENANCE.md
+          test -f docs/ROADMAP.md
+
+      - name: Verify expected project folders
+        shell: bash
+        run: |
+          test -d docs
+          if [ -d "html" ]; then
+            test -d html/partials
+            test -d html/levels
+            test -d html/assets || true
+          fi
+
+  markdown-check:
+    name: Markdown file presence check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: List documentation files
+        shell: bash
+        run: |
+          find . -name "*.md" -print | sort
