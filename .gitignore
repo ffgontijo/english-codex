@@ -1,7 +1,42 @@
+# Operating system files
 .DS_Store
 Thumbs.db
-node_modules/
-dist/
+Desktop.ini
+
+# Environment and secrets
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# IDE and editor files
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies and build outputs
+node_modules/
+vendor/
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# PHP / Composer
+composer.phar
+.phpunit.result.cache
+coverage/
+
+# Docker / local runtime clutter
+*.pid
+*.sock
