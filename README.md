@@ -1,10 +1,9 @@
-<div align="center">
-
 # English Codex
 
-### Um guia de estudo para brasileiros aprenderem inglês do A0 ao C2 criando o próprio caderno.
+Um site educacional em **PHP** para brasileiros estudarem inglês do **A0 ao C2** criando o próprio caderno de estudo.
 
-![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Content](https://img.shields.io/badge/content-PT--BR-323E48?style=for-the-badge)
-![Status](https://img.shields.io/badge/status-active-2D6847?style=for-the-badge)
+O projeto combina explicações claras, exemplos reais, cultura pop, prática ativa, revisão, erros comuns de brasileiros e preparação Cambridge. A ideia não é fazer o aluno rolar uma página bonita e fingir que aprendeu. O objetivo é transformar conteúdo em produção real: anotar, praticar, corrigir e revisar.
+
+## Visão geral
+
+**English Codex** é um companion de estudo para quem quer construir um caderno físico ou digital de inglês. Cada página orient
