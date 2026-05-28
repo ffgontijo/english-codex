@@ -4,22 +4,42 @@ English Codex is a mostly static educational website served through PHP template
 
 Even simple projects deserve basic security discipline, because chaos does not need much of an invitation.
 
+---
+
+## Table of contents
+
+- [Supported version](#supported-version)
+- [Security expectations](#security-expectations)
+- [Deployment notes](#deployment-notes)
+- [Reporting issues](#reporting-issues)
+
+---
+
 ## Supported version
 
-The current maintained version is the latest version on the `main` branch.
+The current maintained version is the latest commit on the `main` branch.
+
+No versioned releases are published. Security fixes are applied directly to `main`.
+
+---
 
 ## Security expectations
 
-Do not commit:
+> **Never commit sensitive information to this repository.**
 
-- passwords;
-- API keys;
-- Cloudflare tokens;
-- private SSH keys;
-- `.env` files;
-- personal credentials;
-- server-specific secrets;
-- private student data.
+The following must always remain outside version control:
+
+| Category | Examples |
+|---|---|
+| Credentials | Passwords, API keys, Cloudflare tokens |
+| Keys and certificates | Private SSH keys, `.pem`, `.key`, `.crt` files |
+| Environment files | `.env`, `.env.*` (except `.env.example`) |
+| Server secrets | Private deployment configs, tunnel tokens |
+| Personal data | Private student data, personal credentials |
+
+The `.gitignore` already excludes these patterns. Review it before committing if you are unsure.
+
+---
 
 ## Deployment notes
 
@@ -31,8 +51,12 @@ If the project is deployed through Docker, Cloudflare Tunnel or a self-hosted se
 - back up before major updates;
 - review file permissions after deployment.
 
+---
+
 ## Reporting issues
 
-If you find a security issue, report it privately to the repository owner instead of opening a public issue with sensitive details.
+If you find a security issue, **do not open a public GitHub issue** with sensitive details.
 
-If this is a personal repository, contact the owner directly.
+Report it privately to the repository owner instead.
+
+If this is a personal repository, contact the owner directly through GitHub or the contact method listed on the repository profile.
