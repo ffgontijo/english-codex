@@ -8,5 +8,3 @@
 ![Docker](https://img.shields.io/badge/Docker-ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Content](https://img.shields.io/badge/content-PT--BR-323E48?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-active-2D6847?style=for-the-badge)
-
-**Ent
